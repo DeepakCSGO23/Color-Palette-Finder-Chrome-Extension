@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "Color Palette Finder",
+    "version": "1.0",
+    "description": "Finds the Color Palette used in a website for you",
+    "icons": {
+      "16":"logo16.png",
+      "48": "logo48.png",
+      "128": "logo128.png"
+    },
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "logo16.png"
+    },
+    "permissions": [
+      "activeTab",
+      "storage",
+      "scripting",
+      "webRequest",
+      "webRequestBlocking"
+    ],
+    "host_permissions": [
+      "<all_urls>"  
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["scrapper.js"]
+      }
+    ]
+  }
+  
