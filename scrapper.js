@@ -10,9 +10,6 @@ const scrapeClassNames =async () => {
     const elements = document.querySelectorAll('[style],link[rel="stylesheet"],style');
     elements.forEach(element => {
         // Filtering data using the callback function
-        // TODO internal css
-        // TODO Now do for inline css
-        // TODO Scrap external css file
         // Split only if the elements classname is of type string
         // When you encounter SVG it will return and SVGAnimatedString Object which contains both the base value and the current animated value and it is a Object containing that two keys
         // * For Internal css

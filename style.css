@@ -2,7 +2,7 @@ body{
     font-family: 'Roboto Condensed';
     background-color: #EDE8F5;
     height: 600px;
-    width: 400px;
+    width: 500px;
 }
 .container{
     display: flex;

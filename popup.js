@@ -34,37 +34,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             // CSS variable converted from array to map to make css variable name as key and color value as value
             const cssVariablesWithColors=new Map(response.cssVariables)
             console.log(cssVariablesWithColors)
-            // if (textColorData[0][0].startsWith('var(')) {
-            //     // Removing var() from the CSS variable and then assigning
-            //     const cssVariableWithoutVar = textColorData[0][0].slice(4, textColorData[0][0].length - 1);
-            //     // 
-            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
-
-            //     textColorData[0][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
-            // }
-            // if (textColorData[1][0].startsWith('var(')) {
-            //     // Removing var() from the CSS variable and then assigning
-            //     const cssVariableWithoutVar = textColorData[1][0].slice(4, textColorData[1][0].length - 1);
-            //     // 
-            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
-
-            //     textColorData[1][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
-            // }
-            // if (backgroundColorData[0][0].startsWith('var(')) {
-            //     // Removing var() from the CSS variable and then assigning
-            //     const cssVariableWithoutVar = backgroundColorData[0][0].slice(4, backgroundColorData[0][0].length - 1);
-            //     // 
-            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
-            //     backgroundColorData[0][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
-            // }
-            // if (backgroundColorData[1][0].startsWith('var(')) {
-            //     // Removing var() from the CSS variable and then assigning
-            //     const cssVariableWithoutVar = backgroundColorData[1][0].slice(4, backgroundColorData[1][0].length - 1);
-            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
-
-            //     // 
-            //     backgroundColorData[1][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
-            // }
 
             // Use conditional (ternary) operator to set default values
             const primaryTextColor = textColorData[0] && textColorData[0][0] ? textColorData[0][0] : "No Color Detected";
@@ -80,17 +49,20 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             
             // Creating a Sample to show users what is the color used visually rather than by text
             for(let i=0;i<4;i++){
-                createColorSample(document.createElement('div'))
+                const color=i===0?primaryTextColor:i===1?secondaryTextColor:i===2?primaryBackgroundColor:secondaryBackgroundColor;
+                const appendElementTo=i===0?document.querySelector(".primary-text-color-div"):i===1?document.querySelector(".secondary-text-color-div"):i===2?document.querySelector(".primary-background-color-div"):document.getElementsByClassName("secondary-background-color-div")
+                createColorSample(document.createElement('div'),appendElementTo,color)
             }
             
         });
     })
 });
 // A function to create a Sample to show users what is the color used visually rather than by text
-const createColorSample=(element)=>{
+const createColorSample=(element,appendElementTo,color)=>{
+    console.log(appendElementTo)
     element.style.height="20px"
     element.style.width='20px'
-    element.style.backgroundColor='#3dba5f'
+    element.style.backgroundColor=color
     element.style.borderRadius="50px"
-    document.body.appendChild(element)
+    appendElementTo.appendChild(element)
 }
