@@ -12,14 +12,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchData' }, 
             // When scrapper.js completes executing the response is handled i.e scrapped data is pushed to the popup html
             (response) => {
-
             // Get the DOM elements
             const primaryTextColorNode = document.getElementById('primary-text-color');
             const secondaryTextColorNode = document.getElementById('secondary-text-color');
             const primaryBackgroundColorNode = document.getElementById('primary-background-color');
             const secondaryBackgroundColorNode = document.getElementById('secondary-background-color');
             // if response is undefined just do this and return from the program flow
-            if(!response.data){
+            if(!response||!response.data){
                 // Update the text content of each DOM element
                 primaryTextColorNode.textContent = `No Color Found!`;
                 secondaryTextColorNode.textContent = `No Color Found!`;
@@ -32,20 +31,40 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const data =response.data || [];
             const textColorData=data.sortedTextColorOccurance
             const backgroundColorData=data.sortedBackgroundColorOccurance
+            // CSS variable converted from array to map to make css variable name as key and color value as value
+            const cssVariablesWithColors=new Map(response.cssVariables)
+            console.log(cssVariablesWithColors)
+            // if (textColorData[0][0].startsWith('var(')) {
+            //     // Removing var() from the CSS variable and then assigning
+            //     const cssVariableWithoutVar = textColorData[0][0].slice(4, textColorData[0][0].length - 1);
+            //     // 
+            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
 
-            // CSS variable map
-            const cssVariables=new Map(response.cssVariables)
-            console.log(cssVariables.keys())
-            //textcolordata has var(--yt-spec-text-primary)
-            // textColorData.forEach((color)=>{
-            //   // this is not a color but a css variable name so replace it
-            //   if(color[0].startsWith('var')){
-            //     // extract variable name 
-            //     const variable=
-               
-            //   }
-            // })
-            
+            //     textColorData[0][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
+            // }
+            // if (textColorData[1][0].startsWith('var(')) {
+            //     // Removing var() from the CSS variable and then assigning
+            //     const cssVariableWithoutVar = textColorData[1][0].slice(4, textColorData[1][0].length - 1);
+            //     // 
+            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
+
+            //     textColorData[1][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
+            // }
+            // if (backgroundColorData[0][0].startsWith('var(')) {
+            //     // Removing var() from the CSS variable and then assigning
+            //     const cssVariableWithoutVar = backgroundColorData[0][0].slice(4, backgroundColorData[0][0].length - 1);
+            //     // 
+            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
+            //     backgroundColorData[0][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
+            // }
+            // if (backgroundColorData[1][0].startsWith('var(')) {
+            //     // Removing var() from the CSS variable and then assigning
+            //     const cssVariableWithoutVar = backgroundColorData[1][0].slice(4, backgroundColorData[1][0].length - 1);
+            //     console.log(cssVariablesWithColors.get(cssVariableWithoutVar),cssVariableWithoutVar)
+
+            //     // 
+            //     backgroundColorData[1][0] = cssVariablesWithColors.get(cssVariableWithoutVar);
+            // }
 
             // Use conditional (ternary) operator to set default values
             const primaryTextColor = textColorData[0] && textColorData[0][0] ? textColorData[0][0] : "No Color Detected";
