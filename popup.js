@@ -50,7 +50,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             // Creating a Sample to show users what is the color used visually rather than by text
             for(let i=0;i<4;i++){
                 const color=i===0?primaryTextColor:i===1?secondaryTextColor:i===2?primaryBackgroundColor:secondaryBackgroundColor;
-                const appendElementTo=i===0?document.querySelector(".primary-text-color-div"):i===1?document.querySelector(".secondary-text-color-div"):i===2?document.querySelector(".primary-background-color-div"):document.getElementsByClassName("secondary-background-color-div")
+                const appendElementTo=i===0?document.querySelector(".primary-text-color-div"):i===1?document.querySelector(".secondary-text-color-div"):i===2?document.querySelector(".primary-background-color-div"):document.querySelector(".secondary-background-color-div")
                 createColorSample(document.createElement('div'),appendElementTo,color)
             }
             
