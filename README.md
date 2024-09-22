@@ -10,9 +10,9 @@ A simple and efficient Chrome extension that scrapes and analyzes the CSS of a w
 
 ## Installation
 
-1. Clone the repository: ```bash git clone https://github.com/yourusername/color-finder.git```
+1. Clone the repository: git clone "https://github.com/DeepakCSGO23/Color-Palette-Finder-Chrome-Extension.git"
 
-2. Open Chrome and navigate to `chrome://extensions/`.
+2. Open Chrome and navigate to "chrome://extensions/".
 
 3. Enable "Developer mode" by toggling the switch in the top right corner.
 
