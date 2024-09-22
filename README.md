@@ -5,32 +5,39 @@ A simple and efficient Chrome extension that scrapes and analyzes the CSS of a w
 ## Features
 
 - **Color Extraction**: Automatically extracts and lists all colors used in a webpage's CSS.
+
 - **User-Friendly Interface**: Easy-to-navigate interface for viewing extracted colors.
+
 - **Real-Time Results**: Get instant results without needing to refresh the page.
 
 ## Installation
 
-1. Clone the repository: git clone "https://github.com/DeepakCSGO23/Color-Palette-Finder-Chrome-Extension.git"
+1. Clone the repository: git clone https://github.com/DeepakCSGO23/Color-Palette-Finder-Chrome-Extension.git
 
-2. Open Chrome and navigate to "chrome://extensions/".
+2. Open Chrome and navigate to chrome://extensions/.
 
 3. Enable "Developer mode" by toggling the switch in the top right corner.
 
-4. Click on "Load unpacked" and select the `color-finder` directory from the cloned repository.
+4. Click on "Load unpacked" and select the Color-Palette-Finder-Chrome-Extension directory from the cloned repository.
 
-5. The Color Finder extension should now be installed and visible in your extensions toolbar.
+5. The Color Palette Finder extension should now be installed and visible in your extensions toolbar.
 
 ## Usage
 
 1. Navigate to any website you want to analyze.
+
 2. Click on the Color Palette Finder icon in the Chrome toolbar.
+
 3. The extension will scrape the page's CSS and display a list of colors used.
+
 4. Click on any color to copy its value to your clipboard.
 
 ## Technologies Used
 
 - JavaScript
+
 - HTML
+
 - CSS
 
 ## Contributing
