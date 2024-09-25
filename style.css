@@ -33,3 +33,18 @@ span{
     font-size: medium;
     font-weight: 400;
 }
+/* Targeting Copy image */
+div img{
+    cursor: pointer;
+}
+/* Make the copy confirmation message hidden at first */
+.copy-confirmation{
+    font-size: small;
+    font-weight: lighter;
+    border-radius: 20px;
+    visibility: hidden;
+    background-color: #4caf50;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}

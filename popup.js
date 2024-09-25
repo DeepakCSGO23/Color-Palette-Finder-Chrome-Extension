@@ -46,7 +46,20 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             secondaryTextColorNode.textContent = secondaryTextColor;
             primaryBackgroundColorNode.textContent = primaryBackgroundColor;
             secondaryBackgroundColorNode.textContent = secondaryBackgroundColor;
-            
+
+            // Adding event listeners to each copy icon
+            document.querySelector('.primary-text-color-div img').addEventListener('click', function() {
+                copyColorToClipboard(primaryTextColor);
+            });
+            document.querySelector('.secondary-text-color-div img').addEventListener('click', function() {
+                copyColorToClipboard(secondaryTextColor);
+            });
+            document.querySelector('.primary-background-color-div img').addEventListener('click', function() {
+                copyColorToClipboard(primaryBackgroundColor);
+            });
+            document.querySelector('.secondary-background-color-div img').addEventListener('click', function() {
+                copyColorToClipboard(secondaryBackgroundColor);
+            });
             // Creating a Sample to show users what is the color used visually rather than by text
             for(let i=0;i<4;i++){
                 const color=i===0?primaryTextColor:i===1?secondaryTextColor:i===2?primaryBackgroundColor:secondaryBackgroundColor;
@@ -65,4 +78,18 @@ const createColorSample=(element,appendElementTo,color)=>{
     element.style.backgroundColor=color
     element.style.borderRadius="50px"
     appendElementTo.appendChild(element)
+}
+// to copy color to clipboard
+const copyColorToClipboard=(selectedColor)=>{
+    navigator.clipboard.writeText(selectedColor).then(()=>{
+        const copyConfirmationElement=document.querySelector('.copy-confirmation');
+        // Set the visibility to visible immediately
+        copyConfirmationElement.style.visibility = "visible";
+        // After 2 seconds make it hidden again
+        setTimeout(()=>{
+            copyConfirmationElement.style.visibility="hidden";
+        },2000)
+    }).catch(err=>{
+        console.error("Failed to Copy!");
+    })
 }

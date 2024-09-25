@@ -76,7 +76,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // * Internal css - just send the css text to postcss server for scrapping
 const scrapeInternalCSS=async(cssText,element)=>{
-    const response=await fetch('https://css-scrapping-server.onrender.com/parse-css',{
+    const response=await fetch('https://squid-app-y9ad5.ondigitalocean.app/parse-css',{
         method:'POST',body:cssText
     })
     const text=JSON.parse(await response.text())
@@ -112,8 +112,6 @@ const scrapeInternalCSS=async(cssText,element)=>{
         
     })
 }
-
-
 // * External css - first get the css text then parse to text to get the css file first
 const scrapFromExternalCSS = async (allExternalStyleSheets) => {
     console.log('here',allExternalStyleSheets)
@@ -121,7 +119,7 @@ const scrapFromExternalCSS = async (allExternalStyleSheets) => {
         const url=allExternalStyleSheets[i].href
         const response=await fetch(url)
         const cssText=await response.text()
-        const response2=await fetch('https://css-scrapping-server.onrender.com/parse-css',{
+        const response2=await fetch('https://squid-app-y9ad5.ondigitalocean.app/parse-css',{
             method:'POST',body:cssText
         })
         
